@@ -1,25 +1,37 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.scss";
+import Blinds from "./Components/Blinds/Blinds";
+import Clock from "./Components/Clock/Clock";
+import Structure from "./Components/Structure/Structure";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="container">
+      <div className="row">
+        <div className="col title">
+          <p>BRICKMAS 2: ELECTRIC BOOGALOO</p>
+        </div>
+      </div>
+      <div className="row">
+        <div className="col-3">
+          <Structure />
+        </div>
+        <div className="col">
+          <Clock />
+          <Blinds />
+        </div>
+      </div>
     </div>
   );
 }
 
 export default App;
+
+// Live clock
+// Display Round
+// Blinds and ante
+// Tournament structure
+// Progress bar for each round
+// Button that starts and stops the round
+// Ability to jump to any round
+// Prize Pool
+// Payouts for first second and third
