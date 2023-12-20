@@ -1,5 +1,4 @@
 import "./App.scss";
-import Blinds from "./Components/Blinds/Blinds";
 import Clock from "./Components/Clock/Clock";
 import Structure from "./Components/Structure/Structure";
 
@@ -17,7 +16,6 @@ function App() {
         </div>
         <div className="col">
           <Clock />
-          <Blinds />
         </div>
       </div>
     </div>

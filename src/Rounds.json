@@ -1,0 +1,100 @@
+{
+    "rounds":[
+        {
+            "id":1,
+            "name":"Round 1",
+            "blinds": "1/2",
+            "ante": "-"
+        },
+        {
+            "id":2,
+            "name":"Round 2",
+            "blinds": "2/4",
+            "ante": "-"
+        },
+        {
+            "id":3,
+            "name":"Round 3",
+            "blinds": "5/10",
+            "ante": "-"
+        },
+        {
+            "id":4,
+            "name":"Round 4",
+            "blinds": "10/20",
+            "ante": "-"
+        },
+        {
+            "id":5,
+            "name":"Round 5",
+            "blinds": "15/30",
+            "ante": "5"
+        },
+        {
+            "id":6,
+            "name":"Round 6",
+            "blinds": "20/40",
+            "ante": "5"
+        },
+        {
+            "id":7,
+            "name":"Round 7",
+            "blinds": "25/50",
+            "ante": "5"
+        },
+        {
+            "id":8,
+            "name":"Round 8",
+            "blinds": "30/60",
+            "ante": "5"
+        },
+        {
+            "id":9,
+            "name":"Round 9",
+            "blinds": "40/80",
+            "ante": "10"
+        },
+        {
+            "id":10,
+            "name":"Round 10",
+            "blinds": "50/100",
+            "ante": "10"
+        },
+        {
+            "id":11,
+            "name":"Round 11",
+            "blinds": "60/120",
+            "ante": "10"
+        },
+        {
+            "id":12,
+            "name":"Round 12",
+            "blinds": "70/140",
+            "ante": "10"
+        },
+        {
+            "id":13,
+            "name":"Round 13",
+            "blinds": "75/150",
+            "ante": "20"
+        },
+        {
+            "id":14,
+            "name":"Round 14",
+            "blinds": "100/200",
+            "ante": "20"
+        },
+        {
+            "id":15,
+            "name":"Round 15",
+            "blinds": "150/300",
+            "ante": "20"
+        },
+        {
+            "id":16,
+            "name":"Round 16",
+            "blinds": "200/400",
+            "ante": "20"
+        }
+    ]
+}

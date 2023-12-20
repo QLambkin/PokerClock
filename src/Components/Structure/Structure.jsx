@@ -3,7 +3,7 @@ import './Structure.scss';
 
 function Structure() {
   return (
-    <table class="table table-hover">
+    <table className="table table-hover table-dark">
       <thead>
         <tr>
           <th scope="col">#</th>
