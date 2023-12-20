@@ -6,7 +6,6 @@ import roundsData from "../../Rounds.json";
 function Clock() {
   const Ref = useRef(null);
 
-  // The state for our timer
   const [timer, setTimer] = useState("00:00");
   const [round, setRound] = useState(1);
 
@@ -24,9 +23,6 @@ function Clock() {
   const startTimer = (e) => {
     let { total, minutes, seconds } = getTimeRemaining(e);
     if (total >= 0) {
-      // update the timer
-      // check if less than 10 then we need to
-      // add '0' at the beginning of the variable
       setTimer(
         (minutes > 9 ? minutes : "0" + minutes) +
           ":" +
@@ -36,9 +32,6 @@ function Clock() {
   };
 
   const clearTimer = (e) => {
-    // If you adjust it you should also need to
-    // adjust the Endtime formula we are about
-    // to code next
     setTimer("15:00");
 
     // If you try to remove this line the
@@ -54,26 +47,16 @@ function Clock() {
   const getDeadTime = () => {
     let deadline = new Date();
 
-    // This is where you need to adjust if
-    // you entend to add more time
+    // Adjust if adding more time
     deadline.setSeconds(deadline.getSeconds() + 900);
     return deadline;
   };
 
-  // We can use useEffect so that when the component
-  // mounts the timer will start as soon as possible
-
-  // We put empty array to act as componentDid
-  // mount only
   useEffect(() => {
     clearTimer(getDeadTime());
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  // Another way to call the clearTimer() to start
-  // the countdown is via action event from the
-  // button first we create function to be called
-  // by the button
   const onClickReset = () => {
     clearTimer(getDeadTime());
   };
