@@ -35,13 +35,16 @@ function Clock() {
             (seconds > 9 ? seconds : "0" + seconds)
         );
       }
+      if (total === 0 && round < 16) {
+        nextRound();
+      }
     }, 1000);
+    
     return () => clearInterval(countdown);
   });
 
   const getTimeRemaining = (e) => {
     const total = e;
-    console.log("The total is: " + total);
     const seconds = Math.floor(total % 60);
     const minutes = Math.floor(total / 60);
     return {
@@ -63,7 +66,7 @@ function Clock() {
   };
 
   const onClickReset = () => {
-    setIsRunning(false);
+    setIsRunning(true);
     setTimeLeft(900);
   };
 
@@ -79,7 +82,7 @@ function Clock() {
 
   return (
     <div style={{ textAlign: "center", margin: "auto" }}>
-      <h2>{timer}</h2>
+      <div className="timer">{timer}</div>
       {round > 1 && <button onClick={prevRound}>Prev</button>}
       {!isRunning ? (
         <button onClick={startTimer}>Start</button>
@@ -104,6 +107,6 @@ function Clock() {
 
 export default Clock;
 
-// auto next round when time is up
 // flash a color and make a noise when time is under 10 seconds and when over
 // change clock color when time is under 10 seconds
+// highlight active round on table 
