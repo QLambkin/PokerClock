@@ -1,29 +1,30 @@
 import React from "react";
-import { useState, useRef } from "react";
+import { useState } from "react";
 import "./Clock.scss";
 import roundsData from "../../Rounds.json";
 
 function Clock() {
-  const Ref = useRef(null);
 
   const [timer, setTimer] = useState("15:00");
   const [round, setRound] = useState(1);
   const [isRunning, setIsRunning] = useState(false);
+  const [timeLeft, setTimeLeft] = useState(900);
 
-  const getTimeRemaining = (e) => {
-    const total = Date.parse(e) - Date.parse(new Date());
-    const seconds = Math.floor((total / 1000) % 60);
-    const minutes = Math.floor((total / 1000 / 60) % 60);
-    return {
-      total,
-      minutes,
-      seconds,
-    };
-  };
+  let elapsed = 60;
+  const countdown = setInterval(() => {
+    if (timeLeft < 0) {
+      clearInterval(countdown);
+      return;
+    }
 
-  const startTimer = (e) => {
-    setIsRunning(true);
-    let { total, minutes, seconds } = getTimeRemaining(e);
+    if (!isRunning) {
+      elapsed = timeLeft;
+      return;
+    }
+
+    setTimeLeft(timeLeft - 1);
+
+    let { total, minutes, seconds } = getTimeRemaining();
     if (total >= 0) {
       setTimer(
         (minutes > 9 ? minutes : "0" + minutes) +
@@ -31,40 +32,37 @@ function Clock() {
           (seconds > 9 ? seconds : "0" + seconds)
       );
     }
+  }, 1000);
+
+  const getTimeRemaining = () => {
+    const total = timeLeft;
+    console.log("total " + total);
+    const seconds = Math.floor(total % 60);
+    const minutes = Math.floor(total / 60);
+    return {
+      total,
+      minutes,
+      seconds,
+    };
   };
 
-  const pauseTimer = (e) => {
+  const startTimer = () => {
+    console.log("start timer " + isRunning);
+    if(isRunning){
+      setTimeLeft(elapsed);
+    }
+    setIsRunning(true);
+  };
+
+  const pauseTimer = () => {
+    console.log("pause timer " + isRunning);
     setIsRunning(false);
   };
 
-  const clearTimer = (e) => {
-    setTimer("15:00");
-
-    // If you try to remove this line the
-    // updating of timer Variable will be
-    // after 1000ms or 1sec
-    if (Ref.current) clearInterval(Ref.current);
-    const id = setInterval(() => {
-      startTimer(e);
-    }, 1000);
-    Ref.current = id;
-  };
-
-  const getDeadTime = (time) => {
-    let deadline = new Date();
-
-    // Adjust if adding more time
-    deadline.setSeconds(deadline.getSeconds() + time);
-    return deadline;
-  };
-
-  // useEffect(() => {
-  //   clearTimer(getDeadTime());
-  //   // eslint-disable-next-line react-hooks/exhaustive-deps
-  // }, []);
-
   const onClickReset = () => {
-    clearTimer(getDeadTime(900));
+    setIsRunning(false);
+    setTimeLeft(900);
+    // clearTimer(timeLeft);
   };
 
   const nextRound = () => {
@@ -81,14 +79,13 @@ function Clock() {
     <div style={{ textAlign: "center", margin: "auto" }}>
       <h2>{timer}</h2>
       {round > 1 && <button onClick={prevRound}>Prev</button>}
-
       {!isRunning ? (
-        <button onClick={onClickReset}>Start</button>
+        <button onClick={startTimer}>Start</button>
       ) : (
         <button onClick={pauseTimer}>Pause</button>
       )}
-
       {round < 16 && <button onClick={nextRound}>Next</button>}
+
       <div className="blinds">
         <div className="round-name">{roundsData.rounds[round - 1].name}</div>
         <div className="blinds">{roundsData.rounds[round - 1].blinds}</div>
