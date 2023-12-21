@@ -24,12 +24,7 @@ function App() {
 
 export default App;
 
-// Live clock
-// Display Round
-// Blinds and ante
-// Tournament structure
 // Progress bar for each round
 // Button that starts and stops the round
-// Ability to jump to any round
 // Prize Pool
 // Payouts for first second and third

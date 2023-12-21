@@ -16,7 +16,7 @@ function Structure() {
         {roundsData.rounds.map((round, index) => {
           return (
             <tr key={index}>
-              <th scope="row">{index + 2}</th>
+              <th scope="row">{index + 1}</th>
               <td>{round.blinds}</td>
               <td>{round.ante}</td>
             </tr>
