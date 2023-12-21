@@ -1,42 +1,47 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useState } from "react";
 import "./Clock.scss";
 import roundsData from "../../Rounds.json";
 
 function Clock() {
-
   const [timer, setTimer] = useState("15:00");
   const [round, setRound] = useState(1);
   const [isRunning, setIsRunning] = useState(false);
-  const [timeLeft, setTimeLeft] = useState(900);
+  const [timeLeft, setTimeLeft] = useState(899);
 
   let elapsed = 60;
-  const countdown = setInterval(() => {
-    if (timeLeft < 0) {
-      clearInterval(countdown);
-      return;
-    }
 
-    if (!isRunning) {
-      elapsed = timeLeft;
-      return;
-    }
+  useEffect(() => {
+    
+    const countdown = setInterval(() => {
+      if (timeLeft < 0) {
+        clearInterval(countdown);
+        return;
+      }
 
-    setTimeLeft(timeLeft - 1);
+      if (!isRunning) {
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+        elapsed = timeLeft;
+        return;
+      }
 
-    let { total, minutes, seconds } = getTimeRemaining();
-    if (total >= 0) {
-      setTimer(
-        (minutes > 9 ? minutes : "0" + minutes) +
-          ":" +
-          (seconds > 9 ? seconds : "0" + seconds)
-      );
-    }
-  }, 1000);
+      setTimeLeft(timeLeft - 1);
 
-  const getTimeRemaining = () => {
-    const total = timeLeft;
-    console.log("total " + total);
+      let { total, minutes, seconds } = getTimeRemaining(timeLeft);
+      if (total >= 0) {
+        setTimer(
+          (minutes > 9 ? minutes : "0" + minutes) +
+            ":" +
+            (seconds > 9 ? seconds : "0" + seconds)
+        );
+      }
+    }, 1000);
+    return () => clearInterval(countdown);
+  });
+
+  const getTimeRemaining = (e) => {
+    const total = e;
+    console.log("The total is: " + total);
     const seconds = Math.floor(total % 60);
     const minutes = Math.floor(total / 60);
     return {
@@ -47,22 +52,19 @@ function Clock() {
   };
 
   const startTimer = () => {
-    console.log("start timer " + isRunning);
-    if(isRunning){
+    if (isRunning) {
       setTimeLeft(elapsed);
     }
     setIsRunning(true);
   };
 
   const pauseTimer = () => {
-    console.log("pause timer " + isRunning);
     setIsRunning(false);
   };
 
   const onClickReset = () => {
     setIsRunning(false);
     setTimeLeft(900);
-    // clearTimer(timeLeft);
   };
 
   const nextRound = () => {
@@ -101,3 +103,7 @@ function Clock() {
 }
 
 export default Clock;
+
+// auto next round when time is up
+// flash a color and make a noise when time is under 10 seconds and when over
+// change clock color when time is under 10 seconds
