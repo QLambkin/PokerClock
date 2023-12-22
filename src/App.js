@@ -11,10 +11,10 @@ function App() {
         </div>
       </div>
       <div className="row">
-        <div className="col-3">
+        <div className="col-3 structure">
           <Structure />
         </div>
-        <div className="col">
+        <div className="col clock">
           <Clock />
         </div>
       </div>
@@ -25,6 +25,5 @@ function App() {
 export default App;
 
 // Progress bar for each round
-// Button that starts and stops the round
 // Prize Pool
 // Payouts for first second and third
