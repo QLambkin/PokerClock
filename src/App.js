@@ -4,10 +4,10 @@ import Structure from "./Components/Structure/Structure";
 
 function App() {
   return (
-    <div className="container">
+    <div className="page">
       <div className="row">
         <div className="col title">
-          <p>BRICKMAS 2: ELECTRIC BOOGALOO</p>
+          BRICKMAS 2: ELECTRIC BOOGALOO
         </div>
       </div>
       <div className="row">
@@ -19,7 +19,7 @@ function App() {
         </div>
       </div>
     </div>
-  );
+  ); 
 }
 
 export default App;

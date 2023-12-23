@@ -2,6 +2,10 @@ import React, { useEffect } from "react";
 import { useState } from "react";
 import "./Clock.scss";
 import roundsData from "../../Rounds.json";
+import useSound from "use-sound";
+import nbaSound from "../../Sounds/nba.mp3";
+import thudSound from "../../Sounds/thud.mp3";
+import alienSound from "../../Sounds/alien.wav";
 
 function Clock() {
   const [timer, setTimer] = useState("15:00");
@@ -37,6 +41,12 @@ function Clock() {
       if (total === 0 && round < 16) {
         nextRound();
       }
+      if(total === 30){
+        playAlien();
+      }
+      if(total <= 5 && total > 0){
+        playThud();
+      }
     }, 1000);
 
     return () => clearInterval(countdown);
@@ -56,6 +66,7 @@ function Clock() {
   const startTimer = () => {
     if (isRunning) {
       setTimeLeft(elapsed);
+      playThud();
     }
     setIsRunning(true);
   };
@@ -67,6 +78,7 @@ function Clock() {
   const onClickReset = () => {
     setIsRunning(true);
     setTimeLeft(899);
+    playNba();
   };
 
   const nextRound = () => {
@@ -79,6 +91,10 @@ function Clock() {
     onClickReset();
   };
 
+  const [playNba] = useSound(nbaSound, { volume: 0.5 });
+  const [playThud] = useSound(thudSound, { volume: 0.9 });
+  const [playAlien] = useSound(alienSound, { volume: 0.9 });
+
   return (
     <div className="clock-side">
       {timeLeft < 30 ? (
@@ -88,21 +104,37 @@ function Clock() {
       )}
       <div className="buttons">
         {round > 1 ? (
-          <button className="btn btn-outline-light" onClick={prevRound}>Prev</button>
+          <button className="btn btn-outline-light" onClick={prevRound}>
+            Prev
+          </button>
         ) : (
-          <button className="btn btn-outline-light" style={{ opacity: 0 }} disabled>
+          <button
+            className="btn btn-outline-light"
+            style={{ opacity: 0 }}
+            disabled
+          >
             Prev
           </button>
         )}
         {!isRunning ? (
-          <button className="btn btn-outline-success" onClick={startTimer}>Start</button>
+          <button className="btn btn-outline-success" onClick={startTimer}>
+            Start
+          </button>
         ) : (
-          <button className="btn btn-outline-danger" onClick={pauseTimer}>Pause</button>
+          <button className="btn btn-outline-danger" onClick={pauseTimer}>
+            Pause
+          </button>
         )}
         {round < 16 ? (
-          <button className="btn btn-outline-light" onClick={nextRound}>Next</button>
+          <button className="btn btn-outline-light" onClick={nextRound}>
+            Next
+          </button>
         ) : (
-          <button className="btn btn-outline-light" style={{ opacity: 0 }} disabled>
+          <button
+            className="btn btn-outline-light"
+            style={{ opacity: 0 }}
+            disabled
+          >
             Next
           </button>
         )}
@@ -132,6 +164,4 @@ function Clock() {
 
 export default Clock;
 
-// flash a color and make a noise when time is under 10 seconds and when over
-// change clock color when time is under 10 seconds
 // highlight active round on table

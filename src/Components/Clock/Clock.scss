@@ -4,11 +4,11 @@
 }
 
 .timer{
-    font-size: 10vw;
+    font-size: 20vh;
 }
 
 .low-time{
-    color: red;
+    color: rgb(200, 0, 0);
 }
 
 .btn {
@@ -16,13 +16,15 @@
 }
 
 .round-name{
-    font-size: 2vw;
+    font-size: 4vh;
+    margin-top: 2vh;
 }
 
 .blinds{
-    font-size: 8vw;
+    font-size: 16vh;
 }
 
 .next-blinds, .prev-blinds{
-    font-size: 3vw;
+    font-size: 6vh;
+    margin-top: 6vh;
 }

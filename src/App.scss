@@ -2,9 +2,20 @@
     background-color: black;
     color: white;
 }
+.page{
+    overflow: hidden;
+}
 
 .title{
-    font-size: 3vw;
+    background-color: rgb(200, 0, 0);
+    font-size: 4vw;
     text-align: center;
     margin: auto;
+}
+
+.structure{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 1vh;
 }
