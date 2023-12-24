@@ -12,8 +12,7 @@
     "react-dom": "^18.2.0",
     "react-scripts": "^5.0.1",
     "use-sound": "^4.0.1",
-    "web-vitals": "^2.1.4",
-    "homepage": "https://qlambkin.github.io/PokerClock/"
+    "web-vitals": "^2.1.4"
   },
   "scripts": {
     "start": "react-scripts start",
