@@ -5,7 +5,6 @@ import roundsData from "../../Rounds.json";
 import useSound from "use-sound";
 import nbaSound from "../../Sounds/nba.mp3";
 import thudSound from "../../Sounds/thud.mp3";
-import alienSound from "../../Sounds/alien.wav";
 
 function Clock() {
   const [timer, setTimer] = useState("15:00");
@@ -40,9 +39,6 @@ function Clock() {
       }
       if (total === 0 && round < 16) {
         nextRound();
-      }
-      if(total === 30){
-        playAlien();
       }
       if(total <= 5 && total > 0){
         playThud();
@@ -93,7 +89,6 @@ function Clock() {
 
   const [playNba] = useSound(nbaSound, { volume: 0.5 });
   const [playThud] = useSound(thudSound, { volume: 0.9 });
-  const [playAlien] = useSound(alienSound, { volume: 0.9 });
 
   return (
     <div className="clock-side">
