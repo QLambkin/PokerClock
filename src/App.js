@@ -11,10 +11,10 @@ function App() {
         </div>
       </div>
       <div className="row">
-        <div className="col-3 structure">
+        <div className="col-12 col-md-3 order-2 order-md-1 structure">
           <Structure />
         </div>
-        <div className="col clock">
+        <div className="col order-1 order-md-2 clock">
           <Clock />
         </div>
       </div>
