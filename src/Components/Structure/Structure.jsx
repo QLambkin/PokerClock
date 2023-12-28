@@ -4,7 +4,7 @@ import roundsData from '../../Rounds.json'
 
 function Structure() {
   return (
-    <table className="table table-hover table-dark table-striped table-bordered">
+    <table className="table table-sm table-hover table-dark table-striped table-bordered">
       <thead>
         <tr>
           <th scope="col">#</th>
