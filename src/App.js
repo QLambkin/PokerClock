@@ -7,7 +7,7 @@ function App() {
     <div className="page">
       <div className="row">
         <div className="col title">
-          BRICKMAS 2: ELECTRIC BOOGALOO
+          BRICKMAS 3: THE BRICK STRIKES BACK
         </div>
       </div>
       <div className="row">
